@@ -1,14 +1,14 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { AppController } from './AppController';
+import { AppService } from './AppService';
 import { TypeOrmModule } from "@nestjs/typeorm";
-import { ProductsModule } from "./products/module/products.module";
-import { Products } from "./products/entity/products.entity";
-import { OrderItems } from "./orders/entity/order-item.entitys";
-import { Orders } from "./orders/entity/orders.entity";
-import { User } from "./entity/user.entity";
-import { Category } from "./entity/category.entity";
-import { UsersModule } from "./users/module/users.module";
+import { ProductsModule } from "./products/module/ProductsModule";
+import { Products } from "./products/entity/ProductsEntity";
+import { OrderItems } from "./orders/entity/OrderItemsEntity";
+import { Orders } from "./orders/entity/OrderEntity";
+import { User } from "./entity/Users";
+import { Category } from "./entity/Category";
+import { UsersModule } from "./users/module/UsersModule";
 
 @Module({
   imports: [

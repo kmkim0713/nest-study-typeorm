@@ -1,9 +1,9 @@
 import { Injectable } from "@nestjs/common";
 import { DataSource, Repository } from "typeorm";
-import { User } from "../../entity/user.entity";
-import { Orders } from "../../orders/entity/orders.entity";
-import { OrderItems } from "../../orders/entity/order-item.entitys";
-import { Products } from "../../products/entity/products.entity";
+import { User } from "../../entity/Users";
+import { Orders } from "../../orders/entity/OrderEntity";
+import { OrderItems } from "../../orders/entity/OrderItemsEntity";
+import { Products } from "../../products/entity/ProductsEntity";
 
 @Injectable()
 export class UsersRepository extends Repository<User> {
