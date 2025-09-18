@@ -4,6 +4,7 @@ import {
   Injectable,
   NestInterceptor,
 } from '@nestjs/common';
+import { getUTCDateTime } from "../Util/Utils";
 
 @Injectable()
 export class RequestLoggingInterceptor implements NestInterceptor {
@@ -12,7 +13,7 @@ export class RequestLoggingInterceptor implements NestInterceptor {
     const method = req.method;
     const url = req.url;
 
-    console.log(`[Request] ${method} ${url} - start`);
+    console.log(`[Request][${getUTCDateTime()}] ${method} ${url} - start`);
 
     // 응답 후 로직 없음, 요청 처리만 로그
     return next.handle();
