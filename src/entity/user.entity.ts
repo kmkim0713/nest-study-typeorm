@@ -1,5 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany, CreateDateColumn, UpdateDateColumn } from 'typeorm';
-import { Order } from '../orders/entity/order.entity';
+import { Orders } from '../orders/entity/orders.entity';
 
 @Entity('users')
 export class User {
@@ -24,6 +24,6 @@ export class User {
   @UpdateDateColumn({ type: 'datetime', name: 'updated_at' })
   updatedAt: Date;
 
-  @OneToMany(() => Order, (order) => order.user)
-  orders: Order[];
+  @OneToMany(() => Orders, (order) => order.user)
+  orders: Orders[];
 }

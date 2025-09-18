@@ -1,6 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToMany, CreateDateColumn, UpdateDateColumn, JoinColumn } from 'typeorm';
 import { User } from '../../entity/user.entity';
-import { OrderItem } from './order-item.entity';
+import { OrderItems } from './order-item.entitys';
 
 export enum OrderStatus {
   PENDING = 'PENDING',
@@ -10,7 +10,7 @@ export enum OrderStatus {
 }
 
 @Entity('orders')
-export class Order {
+export class Orders {
   @PrimaryGeneratedColumn('increment', { type: 'bigint' })
   id: number;
 
@@ -30,6 +30,6 @@ export class Order {
   @UpdateDateColumn({ type: 'datetime', name: 'updated_at' })
   updatedAt: Date;
 
-  @OneToMany(() => OrderItem, (orderItem) => orderItem.order)
-  orderItems: OrderItem[];
+  @OneToMany(() => OrderItems, (orderItem) => orderItem.order)
+  orderItems: OrderItems[];
 }

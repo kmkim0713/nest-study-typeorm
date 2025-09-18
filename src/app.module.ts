@@ -3,9 +3,9 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { ProductsModule } from "./products/module/products.module";
-import { Product } from "./products/entity/product.entity";
-import { OrderItem } from "./orders/entity/order-item.entity";
-import { Order } from "./orders/entity/order.entity";
+import { Products } from "./products/entity/products.entity";
+import { OrderItems } from "./orders/entity/order-item.entitys";
+import { Orders } from "./orders/entity/orders.entity";
 import { User } from "./entity/user.entity";
 import { Category } from "./entity/category.entity";
 import { UsersModule } from "./users/module/users.module";
@@ -19,7 +19,7 @@ import { UsersModule } from "./users/module/users.module";
       username: 'kmkim',
       password: '1234',
       database: 'nestTypeormDb',
-      entities: [Product, Category, User, Order, OrderItem],
+      entities: [Products, Category, User, Orders, OrderItems],
       autoLoadEntities: true,
     }),
     ProductsModule,

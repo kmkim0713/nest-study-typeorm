@@ -1,12 +1,12 @@
 import { Injectable } from "@nestjs/common";
 import { OrdersRepository } from "../repository/orders.repository";
-import { Order } from "../entity/order.entity";
+import { Orders } from "../entity/orders.entity";
 
 @Injectable()
 export class OrdersService {
   constructor(private readonly ordersRepository: OrdersRepository) {}
 
-  findOne(id: number): Promise<Order | null> {
+  findOne(id: number): Promise<Orders | null> {
 
     return this.ordersRepository.findOne({
       where: {

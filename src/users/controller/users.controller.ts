@@ -7,9 +7,15 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {
   }
 
-  @Get()
+  @Get(':id')
   getOne(@Param('id') id: number): Promise<User | null> {
     return this.usersService.findOne(id);
   }
+
+  @Get(':id/order/list')
+  getUserOrderList(@Param('id') id: number): Promise<unknown[] | null> {
+    return this.usersService.getUserOrderList(id);
+  }
+
 
 }

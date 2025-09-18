@@ -9,8 +9,12 @@ export class UsersService {
   findOne(id: number) {
     return this.usersRepository.findOne({
       where: {
-        id: 1
+        id: id
       }
     })
+  }
+
+  getUserOrderList(id: number): Promise<unknown[] | null> {
+    return this.usersRepository.getUserOrderList(id);
   }
 }

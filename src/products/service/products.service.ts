@@ -1,16 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import { ProductsRepository } from "../repository/products.repository";
-import { Product } from "../entity/product.entity";
+import { Products } from "../entity/products.entity";
 
 @Injectable()
 export class ProductsService {
   constructor(private readonly productsRepository: ProductsRepository) {}
 
-  findAll(): Promise<Product[]> {
+  findAll(): Promise<Products[]> {
     return this.productsRepository.find({ relations: ['category'] });
   }
 
-  findOne(id: number): Promise<Product | null> {
+  findOne(id: number): Promise<Products | null> {
     return this.productsRepository.findOne({
       where: { id },
       relations: ['category'],

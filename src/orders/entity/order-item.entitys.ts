@@ -1,19 +1,19 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
-import { Order } from './order.entity';
-import { Product } from '../../products/entity/product.entity';
+import { Orders } from './orders.entity';
+import { Products } from '../../products/entity/products.entity';
 
 @Entity('order_items')
-export class OrderItem {
+export class OrderItems {
   @PrimaryGeneratedColumn('increment', { type: 'bigint' })
   id: number;
 
-  @ManyToOne(() => Order, (order) => order.orderItems, { onDelete: 'CASCADE' })
+  @ManyToOne(() => Orders, (order) => order.orderItems, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'order_id' })
-  order: Order;
+  order: Orders;
 
-  @ManyToOne(() => Product, (product) => product.orderItems)
+  @ManyToOne(() => Products, (product) => product.orderItems)
   @JoinColumn({ name: 'product_id' })
-  product: Product;
+  product: Products;
 
   @Column()
   quantity: number;

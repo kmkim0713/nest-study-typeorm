@@ -1,9 +1,9 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, CreateDateColumn, UpdateDateColumn, OneToMany, JoinColumn } from 'typeorm';
 import { Category } from '../../entity/category.entity';
-import { OrderItem } from '../../orders/entity/order-item.entity';
+import { OrderItems } from '../../orders/entity/order-item.entitys';
 
 @Entity('products')
-export class Product {
+export class Products {
   @PrimaryGeneratedColumn('increment', { type: 'bigint' })
   id: number;
 
@@ -29,6 +29,6 @@ export class Product {
   @UpdateDateColumn({ type: 'datetime', name: 'updated_at' })
   updatedAt: Date;
 
-  @OneToMany(() => OrderItem, (orderItem) => orderItem.product)
-  orderItems: OrderItem[];
+  @OneToMany(() => OrderItems, (orderItem) => orderItem.product)
+  orderItems: OrderItems[];
 }
