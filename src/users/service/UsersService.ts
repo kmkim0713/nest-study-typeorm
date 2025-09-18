@@ -1,5 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { UsersRepository } from "../repository/UsersRepository";
+import { UserOrderProductDto } from "../dto/UserOrderInfo";
 
 @Injectable()
 export class UsersService {
@@ -14,7 +15,7 @@ export class UsersService {
     })
   }
 
-  getUserOrderList(id: number): Promise<unknown[] | null> {
+  getUserOrderList(id: number): Promise<UserOrderProductDto[] | null> {
     return this.usersRepository.getUserOrderList(id);
   }
 }

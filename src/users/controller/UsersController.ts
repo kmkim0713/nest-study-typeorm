@@ -1,6 +1,7 @@
 import { Controller, Get, Param, Post } from "@nestjs/common";
 import { UsersService } from "../service/UsersService";
-import { User } from "../../entity/Users";
+import { User } from "../entity/Users";
+import { UserOrderProductDto } from "../dto/UserOrderInfo";
 
 @Controller('users')
 export class UsersController {
@@ -13,8 +14,10 @@ export class UsersController {
   }
 
   @Get(':id/order/list')
-  getUserOrderList(@Param('id') id: number): Promise<unknown[] | null> {
-    return this.usersService.getUserOrderList(id);
+  getUserOrderList(@Param('id') id: number): Promise<UserOrderProductDto[] | null> {
+    return this.usersService.getUserOrderList(id).then((data: UserOrderProductDto[])=> {
+      return data;
+    });
   }
 
 }

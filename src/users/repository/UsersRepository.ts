@@ -1,9 +1,10 @@
 import { Injectable } from "@nestjs/common";
 import { DataSource, Repository } from "typeorm";
-import { User } from "../../entity/Users";
+import { User } from "../entity/Users";
 import { Orders } from "../../orders/entity/OrderEntity";
 import { OrderItems } from "../../orders/entity/OrderItemsEntity";
 import { Products } from "../../products/entity/ProductsEntity";
+import { UserOrderProductDto } from "../dto/UserOrderInfo";
 
 @Injectable()
 export class UsersRepository extends Repository<User> {
@@ -11,7 +12,7 @@ export class UsersRepository extends Repository<User> {
     super(User, dataSource.createEntityManager());
   }
 
-  getUserOrderList(id: number): Promise<unknown[] | null> {
+  getUserOrderList(id: number): Promise<UserOrderProductDto[] | null> {
     return this.createQueryBuilder('u')
       .leftJoin(Orders, 'o', 'u.id = o.user_id')
       .leftJoin(OrderItems, 'oi', 'o.id = oi.order_id')

@@ -6,7 +6,7 @@ import { ProductsModule } from "./products/module/ProductsModule";
 import { Products } from "./products/entity/ProductsEntity";
 import { OrderItems } from "./orders/entity/OrderItemsEntity";
 import { Orders } from "./orders/entity/OrderEntity";
-import { User } from "./entity/Users";
+import { User } from "./users/entity/Users";
 import { Category } from "./entity/Category";
 import { UsersModule } from "./users/module/UsersModule";
 
