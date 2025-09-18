@@ -14,18 +14,18 @@ export class UsersRepository extends Repository<User> {
 
   getUserOrderList(id: number): Promise<UserOrderProductDto[] | null> {
     return this.createQueryBuilder('u')
-      .leftJoin(Orders, 'o', 'u.id = o.user_id')
+      .leftJoin(Orders, 'o', 'u.id = o.user_id') // 직접 FK 연결(Entity에 FK 설정 안되어있는 경우 leftJoinSelect 못씀)
       .leftJoin(OrderItems, 'oi', 'o.id = oi.order_id')
       .leftJoin(Products, 'p', 'oi.product_id = p.id')
       .select([
-        'u.id',
-        'u.name AS user_name',
-        'p.name AS product_name',
-        'p.description',
-        'p.price',
-        'p.stock',
-        'o.status',
-        'o.createdAt',
+        'u.id AS userId',
+        'u.name AS userName',
+        'p.name AS productName',
+        'p.description AS productDescription',
+        'p.price AS productPrice',
+        'p.stock AS productStock',
+        'o.status AS orderStatus',
+        'o.created_at AS orderCreatedAt',
       ])
       .where('u.id = :userId', {userId: id})
       .andWhere('o.id IS NOT NULL')
