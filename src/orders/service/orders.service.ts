@@ -2,7 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { OrdersRepository } from "../repository/orders.repository";
 import { Order } from "../entity/order.entity";
 
-@Injectable
+@Injectable()
 export class OrdersService {
   constructor(private readonly ordersRepository: OrdersRepository) {}
 
