@@ -1,10 +1,8 @@
 ###
 GET http://localhost:4040/products
 
-
 ###
 GET http://localhost:4040/products/1
-
 
 ###
 GET http://localhost:4040/users/1
