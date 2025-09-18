@@ -1,3 +1,68 @@
+-- 1. 회원
+CREATE TABLE users (
+                       id           BIGINT AUTO_INCREMENT PRIMARY KEY,
+                       email        VARCHAR(100) NOT NULL UNIQUE,
+                       password     VARCHAR(255) NOT NULL,
+                       name         VARCHAR(50)  NOT NULL,
+                       phone        VARCHAR(20),
+                       created_at   DATETIME DEFAULT CURRENT_TIMESTAMP,
+                       updated_at   DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+-- 2. 상품 카테고리
+CREATE TABLE categories (
+                            id          INT AUTO_INCREMENT PRIMARY KEY,
+                            name        VARCHAR(50) NOT NULL UNIQUE,
+                            description VARCHAR(255)
+) ENGINE=InnoDB;
+
+-- 3. 상품
+CREATE TABLE products (
+                          id           BIGINT AUTO_INCREMENT PRIMARY KEY,
+                          category_id  INT,
+                          name         VARCHAR(100) NOT NULL,
+                          description  TEXT,
+                          price        DECIMAL(10,2) NOT NULL,
+                          stock        INT DEFAULT 0,
+                          created_at   DATETIME DEFAULT CURRENT_TIMESTAMP,
+                          updated_at   DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                          FOREIGN KEY (category_id) REFERENCES categories(id)
+) ENGINE=InnoDB;
+
+-- 4. 주문
+CREATE TABLE orders (
+                        id          BIGINT AUTO_INCREMENT PRIMARY KEY,
+                        user_id     BIGINT NOT NULL,
+                        status      ENUM('PENDING','PAID','SHIPPED','CANCELLED') DEFAULT 'PENDING',
+                        total_price DECIMAL(10,2) DEFAULT 0,
+                        created_at  DATETIME DEFAULT CURRENT_TIMESTAMP,
+                        updated_at  DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                        FOREIGN KEY (user_id) REFERENCES users(id)
+) ENGINE=InnoDB;
+
+-- 5. 주문 아이템
+CREATE TABLE order_items (
+                             id         BIGINT AUTO_INCREMENT PRIMARY KEY,
+                             order_id   BIGINT NOT NULL,
+                             product_id BIGINT NOT NULL,
+                             quantity   INT NOT NULL,
+                             price      DECIMAL(10,2) NOT NULL,
+                             FOREIGN KEY (order_id)  REFERENCES orders(id)   ON DELETE CASCADE,
+                             FOREIGN KEY (product_id) REFERENCES products(id)
+) ENGINE=InnoDB;
+
+
+
+
+
+SET FOREIGN_KEY_CHECKS = 0;
+
+
+TRUNCATE TABLE products;
+
+SET FOREIGN_KEY_CHECKS = 1;
+
+
 INSERT INTO categories (name, description) VALUES
                                                ('Electronics', 'Electronic devices such as smartphones, laptops, and accessories'),
                                                ('Clothing', 'Men and women clothing, fashion, and accessories'),
