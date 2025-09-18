@@ -22,7 +22,7 @@ export class ResponseLoggingInterceptor implements NestInterceptor {
       tap(() => {
         const duration = Date.now() - start;
         console.log(
-          `[Response][${getUTCDateTime()}] ${method} ${url} - completed in ${duration}ms`,
+          `[${getUTCDateTime()}][Response] ${method} ${url} - completed in ${duration}ms`,
         );
       }),
     );

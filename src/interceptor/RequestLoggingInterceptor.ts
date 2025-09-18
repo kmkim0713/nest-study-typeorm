@@ -13,7 +13,7 @@ export class RequestLoggingInterceptor implements NestInterceptor {
     const method = req.method;
     const url = req.url;
 
-    console.log(`[Request][${getUTCDateTime()}] ${method} ${url} - start`);
+    console.log(`[${getUTCDateTime()}][Request] ${method} ${url} - start`);
 
     // 응답 후 로직 없음, 요청 처리만 로그
     return next.handle();
