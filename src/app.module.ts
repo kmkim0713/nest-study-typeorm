@@ -11,7 +11,7 @@ import { TypeOrmModule } from "@nestjs/typeorm";
       port: 3306,
       username: 'kmkim',
       password: '1234',
-      database: 'test',
+      database: 'nestTypeormDb',
       autoLoadEntities: true,
     }),
   ],
